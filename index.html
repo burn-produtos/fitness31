@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site com Vídeo e Botões</title>
+
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n; n.loaded=!0; n.version='2.0';
+      n.queue=[]; t=b.createElement(e); t.async=!0;
+      t.src=v; s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1"
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" />
+  <!-- Fonte Lora -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box }
+    html, body {
+      height:100%;
+      background:#000 url('imagem-fundo.jpg') center/cover no-repeat;
+      font-family:'Lora', serif;
+      display:flex; justify-content:center; align-items:center;
+    }
+    .video-bg-container {
+      position:fixed; top:50%; left:50%;
+      width:60vw; height:60vh;
+      transform:translate(-50%,-50%);
+      overflow:hidden; z-index:-1;
+    }
+    .video-bg-container video {
+      width:100%; height:100%;
+      object-fit:contain; background:transparent;
+    }
+    .buttons-container {
+      position:relative; top:20%;
+      display:flex; flex-direction:column;
+      align-items:center; gap:15px;
+      z-index:1;
+      background:rgba(0,0,0,0.6);
+      padding:25px; border-radius:16px;
+    }
+    .button {
+      background:#fff; color:#111;
+      padding:12px 24px; border:none;
+      border-radius:12px; font-size:1em;
+      cursor:pointer; display:flex;
+      align-items:center; gap:12px;
+      transition:background 0.3s;
+      text-decoration:none;
+    }
+    .button i { font-size:1.3em; }
+    .button:hover { background:#ddd; }
+    @media(max-width:800px) {
+      .video-bg-container {
+        width:150vw; height:150vh;
+      }
+      .buttons-container {
+        top:10%; padding:15px;
+      }
+      .button {
+        padding:10px 18px; font-size:0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Vídeo de fundo -->
+  <div class="video-bg-container">
+    <video id="bgVideo" autoplay muted playsinline>
+      <source src="novo-video-fundo.webm" type="video/webm">
+      Seu navegador não suporta vídeo.
+    </video>
+  </div>
+
+  <!-- Botões -->
+  <div class="buttons-container">
+    <a href="catalogo.html" class="button">
+      <i class="fas fa-store"></i> Conheça nossa loja
+    </a>
+    <a href="catalogo.pdf" class="button" download>
+      <i class="fas fa-file-pdf"></i> Conheça nosso Catálogo
+    </a>
+    <a href="ebook-exercicio.pdf" class="button" download>
+      <i class="fas fa-book"></i> Baixe nosso ebook de exercício Grátis
+    </a>
+    <a href="https://wa.me/5537999139844" class="button">
+      <i class="fab fa-whatsapp" style="color:green"></i> Converse com nosso atendente
+    </a>
+    <a href="https://www.instagram.com/alvinhogoncalves1" class="button">
+      <i class="fab fa-instagram" style="color:red"></i> Conheça nossa página
+    </a>
+  </div>
+
+  <script>
+    // Quando o vídeo terminar, congela no último frame
+    const bgVideo = document.getElementById('bgVideo');
+    bgVideo.addEventListener('ended', () => {
+      bgVideo.currentTime = bgVideo.duration - 0.1;
+      bgVideo.pause();
+    });
+  </script>
+
+</body>
+</html>
